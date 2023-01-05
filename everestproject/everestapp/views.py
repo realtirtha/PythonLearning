@@ -3,10 +3,15 @@ from .models import *
 
 # Create your views here.
 
-class ClientHomeView(TemplateView): 
+class ClientHomeView(TemplateView):  
     template_name = "clienthome.html"
 
 class ClientAboutView(ListView):
     template_name = "clientabout.html"
     model = Category
     context_object_name ='categories'
+
+class ClientNewsView(ListView):
+    template_name = "clientnews.html"
+    model = News
+    context_object_name='news'
