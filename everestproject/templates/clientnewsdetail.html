@@ -1,0 +1,12 @@
+{% extends 'clientbase.html' %}
+
+{% block content %}
+<h1>Detail Page</h1>
+<h3>{{newsdetail.title}}</h3>
+
+<br>
+
+<p>{{newsdetail.content}}</p>
+<img src="{{newsdetail.image.url}}" alt="{{newsdetail.title}}">
+
+{% endblock %}

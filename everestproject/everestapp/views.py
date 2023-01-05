@@ -1,4 +1,4 @@
-from django.views.generic import View, TemplateView, ListView
+from django.views.generic import View, TemplateView, ListView, DetailView
 from .models import *
 
 # Create your views here.
@@ -15,3 +15,8 @@ class ClientNewsView(ListView):
     template_name = "clientnews.html"
     model = News
     context_object_name='news'
+
+class ClientNewsDetailView(DetailView):
+    template_name = "clientnewsdetail.html"
+    model = News
+    context_object_name='newsdetail'
