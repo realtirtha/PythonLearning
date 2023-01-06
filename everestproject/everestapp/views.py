@@ -1,4 +1,4 @@
-from django.views.generic import View, TemplateView, ListView, DetailView, CreateView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import *
 from .forms import *
 from django.urls import reverse, reverse_lazy
@@ -27,4 +27,16 @@ class ClientNewsCreateView(CreateView):
     template_name = "clientnewscreate.html"
     form_class = ClientNewsCreateForm
     model = News
+    success_url = reverse_lazy("everestapp:clienthome")
+
+class ClientNewsUpdateView(UpdateView):
+    template_name = "clientnewscreate.html"
+    form_class = ClientNewsCreateForm
+    model = News
+    success_url = reverse_lazy("everestapp:clienthome")
+
+class ClientNewsDeleteView(DeleteView):
+    template_name = "clientnewsdelete.html"
+    model = News
+    context_object_name='news'
     success_url = reverse_lazy("everestapp:clienthome")

@@ -9,4 +9,25 @@
 <p>{{newsdetail.content}}</p>
 <img src="{{newsdetail.image.url}}" alt="{{newsdetail.title}}">
 
+<br>
+
+
+Category: {{newsdetail.category}}
+<br>
+view : {{newsdetail.viewed}}
+<br>
+<br>
+
+
+
+
+<a href="/news/create/{{newsdetail.id}}/">Update News</a>
+
+<br>    
+
+<a href="/news/delete/{{newsdetail.id}}/">Delete News</a>
+
+
+
+
 {% endblock %}

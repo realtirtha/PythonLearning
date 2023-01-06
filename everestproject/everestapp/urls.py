@@ -10,4 +10,8 @@ urlpatterns =[
     path("news/<int:pk>/",ClientNewsDetailView.as_view(), name="clientnewsdetail"),
 
     path("news/create/",ClientNewsCreateView.as_view(), name="clientnewscreate"),
+
+    path("news/create/<int:pk>/",ClientNewsUpdateView.as_view(), name="clientnewsupdate"),
+    path("news/delete/<int:pk>/",ClientNewsDeleteView.as_view(), name="clientnewsdelete"),
+
 ]
