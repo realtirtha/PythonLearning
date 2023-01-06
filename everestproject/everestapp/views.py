@@ -27,4 +27,4 @@ class ClientNewsCreateView(CreateView):
     template_name = "clientnewscreate.html"
     form_class = ClientNewsCreateForm
     model = News
-    sucess_url = reverse_lazy("everestapp:clienthome")
+    success_url = reverse_lazy("everestapp:clienthome")
