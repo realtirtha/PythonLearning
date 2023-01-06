@@ -1,5 +1,7 @@
-from django.views.generic import View, TemplateView, ListView, DetailView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView
 from .models import *
+from .forms import *
+from django.urls import reverse, reverse_lazy
 
 # Create your views here.
 
@@ -20,3 +22,9 @@ class ClientNewsDetailView(DetailView):
     template_name = "clientnewsdetail.html"
     model = News
     context_object_name='newsdetail'
+
+class ClientNewsCreateView(CreateView):
+    template_name = "clientnewscreate.html"
+    form_class = ClientNewsCreateForm
+    model = News
+    sucess_url = reverse_lazy("everestapp:clienthome")
