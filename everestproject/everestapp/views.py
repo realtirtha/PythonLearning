@@ -1,4 +1,5 @@
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.contrib.auth import authenticate, login, logout
 from .models import *
 from .forms import *
 from django.urls import reverse, reverse_lazy
@@ -61,5 +62,24 @@ class AdminLoginView(FormView):
     template_name = "adminlogin.html"
     form_class = AdminLoginForm
     success_url = reverse_lazy("everestapp:clientnewscreate")
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            try:
+                username = user.username
+                login(self.request, user)
+            except Exception as e:
+                print(e)
+                return render(self.request, self.template_name, {"form":form,"error": "Invalid Credentials.."})
+        else:
+            return render(self.request, self.template_name, {"form": form, "error": "Invalid Credentials.."})
+        return super().form_valid(form)
+
+
+
+
 
     
