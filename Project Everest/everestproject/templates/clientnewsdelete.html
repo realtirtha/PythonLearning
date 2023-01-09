@@ -1,0 +1,18 @@
+{% extends 'clientbase.html' %}
+
+{% block news %}active{% endblock %}
+
+{% block content %}
+
+<form method="post">
+    
+    {% csrf_token %}
+
+    <p>Do you wanna delete "{{object}} ?</p>
+    
+
+    <input type="submit" value="confirm">
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'clientbase.html' %}
+
+{% block news %}active{% endblock %}
+
+{% block content %}
+<h1>Detail Page</h1>
+<h3>{{newsdetail.title}}</h3>
+
+<br>
+
+<p>{{newsdetail.content}}</p>
+<img src="{{newsdetail.image.url}}" alt="{{newsdetail.title}}"
+    width="500"
+    height="350">
+
+<br>
+
+
+Category: {{newsdetail.category}}
+<br>
+view : {{newsdetail.viewed}}
+<br>
+<br>
+
+
+
+
+<a href="/news/create/{{newsdetail.id}}/">Update News</a>
+
+<br>    
+
+<a href="/news/delete/{{newsdetail.id}}/">Delete News</a>
+
+
+
+
+{% endblock %}
