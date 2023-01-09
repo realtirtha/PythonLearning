@@ -8,6 +8,9 @@ from django.urls import reverse, reverse_lazy
 class ClientHomeView(TemplateView):  
     template_name = "clienthome.html"
 
+class ClientBlogView(TemplateView):  
+    template_name = "clientblog.html"
+
 class ClientAboutView(ListView):
     template_name = "clientabout.html"
     model = Category
