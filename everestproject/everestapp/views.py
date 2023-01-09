@@ -1,9 +1,22 @@
-from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from .models import *
 from .forms import *
 from django.urls import reverse, reverse_lazy
+from django.shortcuts import render, redirect
 
 # Create your views here.
+class AdminRequiredMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            self.user = request.user
+            if self.user.is_superuser and self.user.is_active:
+                print("Admin only passed")
+            else:
+                return redirect("everestapp:adminlogin")
+        except Exception as e:
+            print(e)
+            return redirect("everestapp:adminlogin")
+        return super().dispatch(request, *args, **kwargs)
 
 class ClientHomeView(TemplateView):  
     template_name = "clienthome.html"
@@ -26,7 +39,7 @@ class ClientNewsDetailView(DetailView):
     model = News
     context_object_name='newsdetail'
 
-class ClientNewsCreateView(CreateView):
+class ClientNewsCreateView(AdminRequiredMixin,CreateView):
     template_name = "clientnewscreate.html"
     form_class = ClientNewsCreateForm
     model = News
@@ -43,3 +56,10 @@ class ClientNewsDeleteView(DeleteView):
     model = News
     context_object_name='news'
     success_url = reverse_lazy("everestapp:clienthome")
+
+class AdminLoginView(FormView):
+    template_name = "adminlogin.html"
+    form_class = AdminLoginForm
+    success_url = reverse_lazy("everestapp:clientnewscreate")
+
+    
