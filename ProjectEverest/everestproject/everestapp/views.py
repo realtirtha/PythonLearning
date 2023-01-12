@@ -78,6 +78,16 @@ class AdminLoginView(FormView):
             return render(self.request, self.template_name, {"form": form, "error": "Invalid Credentials.."})
         return super().form_valid(form)
 
+class AdminLogoutView(View):
+    success_message ='Logged out successfully'
+
+    def get(self, request, **kwargs):
+        if request.user.is_authenticate:
+            logout(request)
+            return redirect('everest')
+        else:
+            raise Http404
+
 
 
 
