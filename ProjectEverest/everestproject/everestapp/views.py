@@ -82,9 +82,9 @@ class AdminLogoutView(View):
     success_message ='Logged out successfully'
 
     def get(self, request, **kwargs):
-        if request.user.is_authenticate:
+        if request.user.is_authenticated:
             logout(request)
-            return redirect('everest')
+            return redirect('everestapp:clienthome')
         else:
             raise Http404
 

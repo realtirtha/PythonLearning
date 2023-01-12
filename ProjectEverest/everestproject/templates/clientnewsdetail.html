@@ -8,7 +8,7 @@
 
 <br>
 
-<p>{{newsdetail.content}}</p>
+<p>{{newsdetail.content|safe}}</p>
 <img src="{{newsdetail.image.url}}" alt="{{newsdetail.title}}"
     width="500"
     height="350">
@@ -23,7 +23,7 @@ view : {{newsdetail.viewed}}
 <br>
 
 
-
+{% if request.user.username %}
 
 <a href="/news/create/{{newsdetail.id}}/">Update News</a>
 
@@ -31,6 +31,7 @@ view : {{newsdetail.viewed}}
 
 <a href="/news/delete/{{newsdetail.id}}/">Delete News</a>
 
+{% endif %}
 
 
 
