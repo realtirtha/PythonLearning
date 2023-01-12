@@ -11,8 +11,9 @@ class ClientNewsCreateForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
+                'style': 'color:red;'
             }),
-            
+
             'category': forms.Select(),
 
             'content': SummernoteWidget(attrs={
